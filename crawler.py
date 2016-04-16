@@ -1,15 +1,14 @@
 from envparse import env
 from bs4 import BeautifulSoup
-import urllib
-import urlparse
+from urllib import parse, request
 import MySQLdb
 
 env.read_envfile()
 
 target = "https://news.ycombinator.com/"
 
-site = urllib.urlopen(target).read()
+site = request.urlopen(target).read()
 soup = BeautifulSoup(site, 'html.parser')
 
 for tag in soup.findAll('a', href=True):
-    print(urlparse.urljoin(target, tag['href']))
+    print(parse.urljoin(target, tag['href']))
