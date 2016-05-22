@@ -1,0 +1,6 @@
+CREATE TABLE crawled_urls
+(
+    id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    address VARCHAR(200) NOT NULL,
+    parsed TINYINT(1) DEFAULT '0' NOT NULL
+);
