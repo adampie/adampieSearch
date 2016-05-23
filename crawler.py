@@ -40,7 +40,7 @@ def crawlUrl():
             # If can fetch and site is new then insert to db
             if robots.can_fetch('*', url):
                 if connect.execute(existsAndCrawled) == 0:
-                    if ("mailto:") or ("javascript:void(0)") or ("'whatsapp://") not in url:
+                    if ("mailto:") or ("javascript:") or ("'whatsapp://") or ("tel:") or ("file://") or ("hhttp://") or ("webcal://") or ("ocast://") or ("linkL%20") not in url:
                         connect.execute(insertUrl)
                         print("Added - "+url)
     except:
