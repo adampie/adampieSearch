@@ -40,8 +40,9 @@ def crawlUrl():
             # If can fetch and site is new then insert to db
             if robots.can_fetch('*', url):
                 if connect.execute(existsAndCrawled) == 0:
-                    connect.execute(insertUrl)
-                    print("Added - "+url)
+                    if ("mailto:") or ("javascript:void(0)") or ("'whatsapp://") not in url:
+                        connect.execute(insertUrl)
+                        print("Added - "+url)
     except:
         print("Soup/Parsing error")
         connect.execute(updateUrl)
@@ -50,7 +51,7 @@ def crawlUrl():
     connect.execute(updateUrl)
     db.commit()
     connect.close()
-
+    db.close()
     # Back at it again
     crawlUrl()
 
